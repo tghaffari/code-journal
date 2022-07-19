@@ -3,7 +3,7 @@ body {
 }
 
 .bottom-margin {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .purple-background {
@@ -33,7 +33,7 @@ body {
 
 .img-placeholder {
   width: 100%;
-  max-height: 300px;
+  max-height: 400px;
   object-fit: cover;
 }
 
@@ -86,4 +86,43 @@ textarea:focus {
 
 .save-button:hover {
   cursor: pointer;
+}
+
+.entries-styling {
+  font-family: "Proza Libre", sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 41px;
+  color: #292929;
+}
+
+h1 {
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.title-styling {
+  font-family: "Proza Libre", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+}
+
+.notes-styling {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.left {
+  justify-content: start;
 }
