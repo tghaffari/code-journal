@@ -24,6 +24,7 @@ body {
   font-size: 30px;
   line-height: 40px;
   color: #292929;
+  margin: 30px 0;
 }
 
 .center {
@@ -58,7 +59,8 @@ textarea {
   width: 100%;
 }
 
-.save-button {
+.save-button,
+.new-button {
   color: white;
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
@@ -84,7 +86,8 @@ textarea:focus {
   box-shadow: 0 0 1px 1px rgb(150 66 233 / 60%);
 }
 
-.save-button:hover {
+.save-button:hover,
+.new-button:hover {
   cursor: pointer;
 }
 
@@ -121,8 +124,4 @@ ul {
   font-weight: 400;
   font-size: 16px;
   line-height: 26px;
-}
-
-.left {
-  justify-content: start;
 }
