@@ -6,6 +6,12 @@
   <title>Code Journal</title>
   <link rel="icon" href="images/favicon.ico">
   <link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap"
+  rel="stylesheet">
+  <link
+  href="https://fonts.googleapis.com/css2?family=Proza+Libre:wght@400;600&display=swap"
+  rel="stylesheet">
+  <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
@@ -15,10 +21,70 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-  <header>
+<body class="gray-background">
+  <header class="purple-background">
+    <div class="container">
+      <div class="row">
+        <div class="column-full">
+          <h3 class="code-journal-styling">Code Journal</h3>
+        </div>
+      </div>
+    </div>
   </header>
   <main>
+    <div class="container">
+      <div data-view="entry-form">
+        <form action="" id="new-entry-form">
+          <div class="row">
+            <div class="column-full">
+              <h1 class="new-entry-styling">New Entry</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full column-half center">
+              <img
+              class="img-placeholder bottom-margin"
+              src="images/placeholder-image-square.jpg"
+              alt="Image placeholder"
+              id="img">
+            </div>
+            <div class="column-full column-half">
+              <label for="title">Title</label>
+              <input
+              required
+              class="bottom-margin"
+              type="text"
+              name="title"
+              id="title">
+              <label for="photo-url">Photo Url</label>
+              <input
+              required
+              class="bottom-margin"
+              type="url"
+              name="url"
+              id="photo-url">
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <label for="notes">Notes</label>
+              <textarea
+              required
+              class="bottom-margin"
+              name="notes"
+              id="notes"
+              cols="30"
+              rows="10"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full right">
+              <button class="save-button bottom-margin"">SAVE</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
