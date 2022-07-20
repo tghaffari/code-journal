@@ -144,3 +144,11 @@ ul {
   font-size: 16px;
   line-height: 26px;
 }
+
+.entries-placeholder {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+  text-align: center;
+}

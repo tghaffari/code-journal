@@ -5,7 +5,10 @@ var $newEntryForm = document.querySelector('#new-entry-form');
 var $entriesList = document.querySelector('#entries-list');
 var $newEntryView = document.querySelector('[data-view="entry-form"]');
 var $entriesView = document.querySelector('[data-view="entries"]');
-var $body = document.querySelector('body');
+var $newButton = document.querySelector('.new-button');
+var $navbarEntries = document.querySelector('.navbar-entries');
+var $dataView = document.querySelectorAll('[data-view]');
+var $entriesPlaceholder = document.querySelector('.entries-placeholder');
 
 function updateImage(event) {
   $img.setAttribute('src', event.target.value);
@@ -25,7 +28,11 @@ function saveNewEntry(event) {
   var createdJournalEntry = renderJournalEntry(newEntryInput);
   $entriesList.prepend(createdJournalEntry);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  if (data.entries.length > 0) {
+    $entriesPlaceholder.className = 'row bottom-margin entries-placeholder hidden';
+  }
   $newEntryForm.reset();
+  viewSwap('entries');
 }
 
 $newEntryForm.addEventListener('submit', saveNewEntry);
@@ -82,38 +89,42 @@ function handleDomContentLoaded(event) {
     var newJournalEntry = renderJournalEntry(data.entries[i]);
     $entriesList.appendChild(newJournalEntry);
   }
+
+  if (data.view === 'entries') {
+    $newEntryView.setAttribute('class', 'hidden');
+    $entriesView.removeAttribute('class', 'hidden');
+  } else if (data.view === 'entry-form') {
+    $newEntryView.removeAttribute('class', 'hidden');
+    $entriesView.setAttribute('class', 'hidden');
+  }
+
+  if (data.entries.length > 0) {
+    $entriesPlaceholder.className = 'row bottom-margin entries-placeholder hidden';
+  }
 }
 
 document.addEventListener('DOMContentLoaded', handleDomContentLoaded);
 
-function switchView(event) {
+function assignDataView(event) {
   if (event.target.matches('.new-button')) {
-    $newEntryView.removeAttribute('class', 'hidden');
-    $entriesView.setAttribute('class', 'hidden');
-    data.view = 'entry-form';
-
-  }
-
-  if (event.target.matches('.save-button')) {
-    $newEntryView.setAttribute('class', 'hidden');
-    $entriesView.removeAttribute('class', 'hidden');
-    data.view = 'entries';
+    viewSwap('entry-form');
   }
 
   if (event.target.matches('.navbar-entries')) {
-    $newEntryView.setAttribute('class', 'hidden');
-    $entriesView.removeAttribute('class', 'hidden');
-    data.view = 'entries';
+    viewSwap('entries');
   }
 }
-$body.addEventListener('click', switchView);
 
-if (data.view === 'entries') {
-  $newEntryView.setAttribute('class', 'hidden');
-  $entriesView.removeAttribute('class', 'hidden');
+function viewSwap(view) {
+  for (var i = 0; i < $dataView.length; i++) {
+    if (view === $dataView[i].getAttribute('data-view')) {
+      $dataView[i].className = '';
+      data.view = view;
+    } else {
+      $dataView[i].className = 'hidden';
+    }
+  }
 }
 
-if (data.view === 'entry-form') {
-  $newEntryView.removeAttribute('class', 'hidden');
-  $entriesView.setAttribute('class', 'hidden');
-}
+$newButton.addEventListener('click', assignDataView);
+$navbarEntries.addEventListener('click', assignDataView);
