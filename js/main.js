@@ -62,6 +62,7 @@ function renderJournalEntry(entry) {
 
   var liElement = document.createElement('li');
   liElement.setAttribute('class', 'bottom-margin');
+  liElement.setAttribute('data-entry-id', entry.entryId);
 
   var rowDiv = document.createElement('div');
   rowDiv.setAttribute('class', 'row');
@@ -98,7 +99,7 @@ function renderJournalEntry(entry) {
   rowSpacing.appendChild(columnFlex2);
 
   var iPen = document.createElement('i');
-  iPen.setAttribute('class', 'fa-solid fa-pen pen-styling');
+  iPen.setAttribute('class', 'fa-solid fa-pen edit-button');
   columnFlex2.appendChild(iPen);
 
   var rowDiv2 = document.createElement('div');
@@ -132,16 +133,6 @@ function handleDomContentLoaded(event) {
 
 document.addEventListener('DOMContentLoaded', handleDomContentLoaded);
 
-function assignDataView(event) {
-  if (event.target.matches('.new-button')) {
-    viewSwap('entry-form');
-  }
-
-  if (event.target.matches('.navbar-entries')) {
-    viewSwap('entries');
-  }
-}
-
 function viewSwap(view) {
   for (var i = 0; i < $dataView.length; i++) {
     if (view === $dataView[i].getAttribute('data-view')) {
@@ -153,5 +144,32 @@ function viewSwap(view) {
   }
 }
 
-$newButton.addEventListener('click', assignDataView);
-$navbarEntries.addEventListener('click', assignDataView);
+function handleNewButtonClick(event) {
+  viewSwap('entry-form');
+}
+
+function handleNavBarEntriesClick(event) {
+  viewSwap('entries');
+}
+
+function handleEditButtonClick(event) {
+  if (event.target.matches('.edit-button')) {
+    viewSwap('entry-form');
+    if (event.target.tagName === 'I') {
+      var closestItem = event.target.closest('li');
+    }
+
+    var dataEntryId = closestItem.getAttribute('data-entry-id');
+    dataEntryId = parseInt(dataEntryId);
+
+    for (var i = 0; i < data.entries.length; i++) {
+      if (dataEntryId === data.entries[i].entryId) {
+        data.editing = data.entries[i];
+      }
+    }
+  }
+}
+
+$newButton.addEventListener('click', handleNewButtonClick);
+$navbarEntries.addEventListener('click', handleNavBarEntriesClick);
+$entriesList.addEventListener('click', handleEditButtonClick);
