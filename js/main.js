@@ -43,8 +43,19 @@ function renderJournalEntry(entry) {
   //      <img class="img-placeholder bottom-margin" src=$photoURL //(value)>
   //    </div>
   //    <div class="column-full column-half">
-  //      <h1 class="title-styling">Title</h1>
-  //      <p class="notes-styling">Notes</p>
+  //      <div class="row spacing">
+  //        <div class=" column-flex">
+  //          <h1 class="title-styling">Title</h1>
+  //        </div>
+  //        <div class="column-flex">
+  //          <i class="fa-solid fa-pen pen-styling"></i>
+  //        </div>
+  //      </div>
+  //      <div class="row">
+  //        <div class="column-flex">
+  //          <p class="notes-styling">Notes</p>
+  //        </div>
+  //      </div>
   //    </div>
   //  </div>
   // </li>
@@ -69,15 +80,39 @@ function renderJournalEntry(entry) {
   columnDiv.setAttribute('class', 'column-full column-half');
   rowDiv.appendChild(columnDiv);
 
+  var rowSpacing = document.createElement('div');
+  rowSpacing.setAttribute('class', 'row spacing');
+  columnDiv.appendChild(rowSpacing);
+
+  var columnFlex1 = document.createElement('div');
+  columnFlex1.setAttribute('class', 'column-flex');
+  rowSpacing.appendChild(columnFlex1);
+
   var titleHeader = document.createElement('h1');
   titleHeader.setAttribute('class', 'title-styling');
   titleHeader.textContent = entry.title;
-  columnDiv.appendChild(titleHeader);
+  columnFlex1.appendChild(titleHeader);
+
+  var columnFlex2 = document.createElement('div');
+  columnFlex2.setAttribute('class', 'column-flex');
+  rowSpacing.appendChild(columnFlex2);
+
+  var iPen = document.createElement('i');
+  iPen.setAttribute('class', 'fa-solid fa-pen pen-styling');
+  columnFlex2.appendChild(iPen);
+
+  var rowDiv2 = document.createElement('div');
+  rowDiv2.setAttribute('class', 'row');
+  columnDiv.appendChild(rowDiv2);
+
+  var columnFlex3 = document.createElement('div');
+  columnFlex3.setAttribute('class', 'column-flex');
+  rowDiv2.appendChild(columnFlex3);
 
   var notesParagraph = document.createElement('p');
   notesParagraph.setAttribute('class', 'notes-styling');
   notesParagraph.textContent = entry.notes;
-  columnDiv.appendChild(notesParagraph);
+  columnFlex3.appendChild(notesParagraph);
 
   return liElement;
 }

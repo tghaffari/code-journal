@@ -138,6 +138,11 @@ ul {
   line-height: 33px;
 }
 
+.pen-styling {
+  color: #562b81;
+  font-size: 20px;
+}
+
 .notes-styling {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
