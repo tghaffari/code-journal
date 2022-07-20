@@ -24,16 +24,16 @@
 <body class="gray-background">
   <header class="purple-background">
     <div class="container">
-      <div class="row">
+      <div class="row bottom-margin">
         <div class="column-full">
-          <h3 class="code-journal-styling">Code Journal<span class="navbar-entries">Entries</span></h3>
+          <h3 class="code-journal-styling">Code Journal<a class="navbar-entries" href="#entry">Entries</a></h3>
         </div>
       </div>
     </div>
   </header>
   <main>
     <div class="container">
-      <div data-view="entry-form">
+      <div class="hidden" data-view="entry-form">
         <form action="" id="new-entry-form">
           <div class="row">
             <div class="column-full">
@@ -85,8 +85,7 @@
         </form>
       </div>
 
-
-      <div data-view="entries">
+      <div data-view="entries" id="entry">
         <div class="row spacing bottom-margin">
           <div class="column-flex">
             <h1 class="entries-styling bottom-margin">Entries</h1>

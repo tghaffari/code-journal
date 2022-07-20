@@ -2,8 +2,10 @@
 var $img = document.querySelector('#img');
 var $photoUrl = document.querySelector('#photo-url');
 var $newEntryForm = document.querySelector('#new-entry-form');
-// var $saveButton = document.querySelector('.save-button');
 var $entriesList = document.querySelector('#entries-list');
+var $newEntryView = document.querySelector('[data-view="entry-form"]');
+var $entriesView = document.querySelector('[data-view="entries"]');
+var $body = document.querySelector('body');
 
 function updateImage(event) {
   $img.setAttribute('src', event.target.value);
@@ -20,13 +22,15 @@ function saveNewEntry(event) {
   newEntryInput.entryId = data.nextEntryId;
   data.nextEntryId++;
   data.entries.unshift(newEntryInput);
+  var createdJournalEntry = renderJournalEntry(newEntryInput);
+  $entriesList.prepend(createdJournalEntry);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $newEntryForm.reset();
 }
 
 $newEntryForm.addEventListener('submit', saveNewEntry);
 
-function entryDomTreeCreation(entry) {
+function renderJournalEntry(entry) {
 
   // <li class="bottom-margin">
   //  <div class="row">
@@ -73,17 +77,43 @@ function entryDomTreeCreation(entry) {
   return liElement;
 }
 
-for (var i = 0; i < data.entries.length; i++) {
-  var newJournalEntry = entryDomTreeCreation(data.entries[i]);
-  $entriesList.appendChild(newJournalEntry);
-  document.addEventListener('DOMContentLoaded', entryDomTreeCreation);
+function handleDomContentLoaded(event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    var newJournalEntry = renderJournalEntry(data.entries[i]);
+    $entriesList.appendChild(newJournalEntry);
+  }
 }
 
-function saveInputAsEntry(event) {
-  event.preventDefault();
-  data.entries.push(newJournalEntry);
-  $entriesList.append(entryDomTreeCreation(newJournalEntry));
-  $newEntryForm.reset();
+document.addEventListener('DOMContentLoaded', handleDomContentLoaded);
+
+function switchView(event) {
+  if (event.target.matches('.new-button')) {
+    $newEntryView.removeAttribute('class', 'hidden');
+    $entriesView.setAttribute('class', 'hidden');
+    data.view = 'entry-form';
+
+  }
+
+  if (event.target.matches('.save-button')) {
+    $newEntryView.setAttribute('class', 'hidden');
+    $entriesView.removeAttribute('class', 'hidden');
+    data.view = 'entries';
+  }
+
+  if (event.target.matches('.navbar-entries')) {
+    $newEntryView.setAttribute('class', 'hidden');
+    $entriesView.removeAttribute('class', 'hidden');
+    data.view = 'entries';
+  }
+}
+$body.addEventListener('click', switchView);
+
+if (data.view === 'entries') {
+  $newEntryView.setAttribute('class', 'hidden');
+  $entriesView.removeAttribute('class', 'hidden');
 }
 
-$newEntryForm.addEventListener('submit', saveInputAsEntry);
+if (data.view === 'entry-form') {
+  $newEntryView.removeAttribute('class', 'hidden');
+  $entriesView.setAttribute('class', 'hidden');
+}
