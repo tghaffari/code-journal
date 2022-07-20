@@ -26,7 +26,7 @@
     <div class="container">
       <div class="row">
         <div class="column-full">
-          <h3 class="code-journal-styling">Code Journal</h3>
+          <h3 class="code-journal-styling">Code Journal<span class="navbar-entries">Entries</span></h3>
         </div>
       </div>
     </div>
@@ -87,15 +87,15 @@
 
 
       <div data-view="entries">
-        <div class="row">
-          <div class="column-half">
+        <div class="row spacing bottom-margin">
+          <div class="column-flex">
             <h1 class="entries-styling bottom-margin">Entries</h1>
           </div>
-          <div class="column-half right">
-            <button class="new-button">NEW</button>
+          <div class="column-flex">
+            <a href="#new-entry-form" class="new-button">NEW</a>
           </div>
         </div>
-        <ul>
+        <ul id="entries-list">
         </ul>
       </div>
     </div>

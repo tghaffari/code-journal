@@ -2,6 +2,8 @@
 var $img = document.querySelector('#img');
 var $photoUrl = document.querySelector('#photo-url');
 var $newEntryForm = document.querySelector('#new-entry-form');
+// var $saveButton = document.querySelector('.save-button');
+var $entriesList = document.querySelector('#entries-list');
 
 function updateImage(event) {
   $img.setAttribute('src', event.target.value);
@@ -71,10 +73,17 @@ function entryDomTreeCreation(entry) {
   return liElement;
 }
 
-var $ul = document.querySelector('ul');
-
 for (var i = 0; i < data.entries.length; i++) {
   var newJournalEntry = entryDomTreeCreation(data.entries[i]);
-  $ul.appendChild(newJournalEntry);
+  $entriesList.appendChild(newJournalEntry);
   document.addEventListener('DOMContentLoaded', entryDomTreeCreation);
 }
+
+function saveInputAsEntry(event) {
+  event.preventDefault();
+  data.entries.push(newJournalEntry);
+  $entriesList.append(entryDomTreeCreation(newJournalEntry));
+  $newEntryForm.reset();
+}
+
+$newEntryForm.addEventListener('submit', saveInputAsEntry);

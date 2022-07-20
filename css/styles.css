@@ -18,6 +18,14 @@ body {
   color: white;
 }
 
+.navbar-entries {
+  padding-left: 20px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}
+
 .new-entry-styling {
   font-family: "Proza Libre", sans-serif;
   font-weight: 600;
@@ -70,8 +78,16 @@ textarea {
   border-color: #562b81;
   border-radius: 4px;
   text-align: center;
-  width: 72px;
-  height: 32px;
+  padding: 5px 15px;
+}
+
+.new-button {
+  text-decoration: none;
+}
+
+.spacing {
+  justify-content: space-between;
+  align-items: center;
 }
 
 .right {
@@ -97,6 +113,7 @@ textarea:focus {
   font-size: 30px;
   line-height: 41px;
   color: #292929;
+  display: inline;
 }
 
 h1 {

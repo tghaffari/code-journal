@@ -18,13 +18,18 @@
   width: 100%;
 }
 
+.column-flex {
+  flex-basis: auto;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
   }
 
   .column-full,
-  .column-half {
+  .column-half,
+  .column-flex {
     padding: 0 0.75rem;
   }
 
