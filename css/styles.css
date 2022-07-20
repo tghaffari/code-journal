@@ -3,7 +3,7 @@ body {
 }
 
 .bottom-margin {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .purple-background {
@@ -18,12 +18,23 @@ body {
   color: white;
 }
 
+.navbar-entries {
+  text-decoration: none;
+  padding-left: 20px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: white;
+}
+
 .new-entry-styling {
   font-family: "Proza Libre", sans-serif;
   font-weight: 600;
   font-size: 30px;
   line-height: 40px;
   color: #292929;
+  margin: 30px 0;
 }
 
 .center {
@@ -33,7 +44,7 @@ body {
 
 .img-placeholder {
   width: 100%;
-  max-height: 300px;
+  max-height: 400px;
   object-fit: cover;
 }
 
@@ -58,7 +69,8 @@ textarea {
   width: 100%;
 }
 
-.save-button {
+.save-button,
+.new-button {
   color: white;
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
@@ -68,8 +80,16 @@ textarea {
   border-color: #562b81;
   border-radius: 4px;
   text-align: center;
-  width: 72px;
-  height: 32px;
+  padding: 5px 15px;
+}
+
+.new-button {
+  text-decoration: none;
+}
+
+.spacing {
+  justify-content: space-between;
+  align-items: center;
 }
 
 .right {
@@ -84,6 +104,51 @@ textarea:focus {
   box-shadow: 0 0 1px 1px rgb(150 66 233 / 60%);
 }
 
-.save-button:hover {
+.save-button:hover,
+.new-button:hover {
   cursor: pointer;
+}
+
+.entries-styling {
+  font-family: "Proza Libre", sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 41px;
+  color: #292929;
+  display: inline;
+}
+
+h1 {
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.title-styling {
+  font-family: "Proza Libre", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+}
+
+.notes-styling {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.entries-placeholder {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+  text-align: center;
 }

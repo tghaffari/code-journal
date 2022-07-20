@@ -24,9 +24,9 @@
 <body class="gray-background">
   <header class="purple-background">
     <div class="container">
-      <div class="row">
+      <div class="row bottom-margin">
         <div class="column-full">
-          <h3 class="code-journal-styling">Code Journal</h3>
+          <h3 class="code-journal-styling">Code Journal<a class="navbar-entries" href="">Entries</a></h3>
         </div>
       </div>
     </div>
@@ -83,6 +83,24 @@
             </div>
           </div>
         </form>
+      </div>
+
+      <div data-view="entries" id="entry">
+        <div class="row spacing bottom-margin">
+          <div class="column-flex">
+            <h1 class="entries-styling bottom-margin">Entries</h1>
+          </div>
+          <div class="column-flex">
+            <a href="" class="new-button">NEW</a>
+          </div>
+        </div>
+        <div class="row bottom-margin entries-placeholder">
+          <div class="column-full">
+            <p>No entries have been recorded.</p>
+          </div>
+        </div>
+        <ul id="entries-list">
+        </ul>
       </div>
     </div>
   </main>
