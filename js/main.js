@@ -3,8 +3,6 @@ var $img = document.querySelector('#img');
 var $photoUrl = document.querySelector('#photo-url');
 var $newEntryForm = document.querySelector('#new-entry-form');
 var $entriesList = document.querySelector('#entries-list');
-var $newEntryView = document.querySelector('[data-view="entry-form"]');
-var $entriesView = document.querySelector('[data-view="entries"]');
 var $newButton = document.querySelector('.new-button');
 var $navbarEntries = document.querySelector('.navbar-entries');
 var $dataView = document.querySelectorAll('[data-view]');
@@ -90,13 +88,7 @@ function handleDomContentLoaded(event) {
     $entriesList.appendChild(newJournalEntry);
   }
 
-  if (data.view === 'entries') {
-    $newEntryView.setAttribute('class', 'hidden');
-    $entriesView.removeAttribute('class', 'hidden');
-  } else if (data.view === 'entry-form') {
-    $newEntryView.removeAttribute('class', 'hidden');
-    $entriesView.setAttribute('class', 'hidden');
-  }
+  viewSwap(data.view);
 
   if (data.entries.length > 0) {
     $entriesPlaceholder.className = 'row bottom-margin entries-placeholder hidden';
