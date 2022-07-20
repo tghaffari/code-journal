@@ -7,6 +7,8 @@ var $newButton = document.querySelector('.new-button');
 var $navbarEntries = document.querySelector('.navbar-entries');
 var $dataView = document.querySelectorAll('[data-view]');
 var $entriesPlaceholder = document.querySelector('.entries-placeholder');
+var $title = document.querySelector('#title');
+var $notes = document.querySelector('#notes');
 
 function updateImage(event) {
   $img.setAttribute('src', event.target.value);
@@ -136,10 +138,10 @@ document.addEventListener('DOMContentLoaded', handleDomContentLoaded);
 function viewSwap(view) {
   for (var i = 0; i < $dataView.length; i++) {
     if (view === $dataView[i].getAttribute('data-view')) {
-      $dataView[i].className = '';
+      $dataView[i].className = 'view';
       data.view = view;
     } else {
-      $dataView[i].className = 'hidden';
+      $dataView[i].className = 'view hidden';
     }
   }
 }
@@ -167,6 +169,9 @@ function handleEditButtonClick(event) {
         data.editing = data.entries[i];
       }
     }
+    $title.value = data.editing.title;
+    $photoUrl.value = data.editing.photoUrl;
+    $notes.value = data.editing.notes;
   }
 }
 
