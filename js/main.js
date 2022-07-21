@@ -9,6 +9,9 @@ var $dataView = document.querySelectorAll('[data-view]');
 var $entriesPlaceholder = document.querySelector('.entries-placeholder');
 var $title = document.querySelector('#title');
 var $notes = document.querySelector('#notes');
+var $delete = document.querySelector('.delete');
+var $entryTitle = document.querySelector('.new-entry-styling');
+var $modalBackground = document.querySelector('.modal-background');
 
 function updateImage(event) {
   if ($photoUrl.value === '') {
@@ -175,6 +178,8 @@ function handleNewButtonClick(event) {
   data.editing = null;
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $newEntryForm.reset();
+  $delete.className = 'delete hidden';
+  $entryTitle.textContent = 'New Entry';
 }
 
 function handleNavBarEntriesClick(event) {
@@ -200,11 +205,20 @@ function handleEditButtonClick(event) {
         $photoUrl.value = data.editing.photoUrl;
         $notes.value = data.editing.notes;
         $img.setAttribute('src', data.editing.photoUrl);
+        $entryTitle.textContent = 'Edit Entry';
       }
     }
+    $delete.className = 'delete';
+  }
+}
+
+function handleDeleteClick(event) {
+  if (event.target.matches('.delete')) {
+    $modalBackground.className = 'modal-background';
   }
 }
 
 $newButton.addEventListener('click', handleNewButtonClick);
 $navbarEntries.addEventListener('click', handleNavBarEntriesClick);
 $entriesList.addEventListener('click', handleEditButtonClick);
+$delete.addEventListener('click', handleDeleteClick);
