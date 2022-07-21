@@ -11,6 +11,8 @@
   <link
   href="https://fonts.googleapis.com/css2?family=Proza+Libre:wght@400;600&display=swap"
   rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+  rel="stylesheet">
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -23,8 +25,8 @@
 </head>
 <body class="gray-background">
   <header class="purple-background">
-    <div class="container">
-      <div class="row bottom-margin">
+    <div class="container bottom-margin">
+      <div class="row">
         <div class="column-full">
           <h3 class="code-journal-styling">Code Journal<a class="navbar-entries" href="#">Entries</a></h3>
         </div>
@@ -77,9 +79,12 @@
               rows="10"></textarea>
             </div>
           </div>
-          <div class="row">
-            <div class="column-full right">
-              <button class="save-button bottom-margin"">SAVE</button>
+          <div class="row spacing bottom-margin">
+            <div class="column-flex">
+              <p class="delete hidden">Delete Entry</p>
+            </div>
+            <div class="column-flex">
+              <button class="save-button">SAVE</button>
             </div>
           </div>
         </form>
@@ -101,6 +106,28 @@
         </div>
         <ul id="entries-list">
         </ul>
+      </div>
+
+      <div class="modal-background hidden">
+        <div class="modal-window">
+          <div class="row">
+            <div class="column-full">
+              <div class="row">
+                <div class="column-full">
+                  <p class="modal-text">Are you sure you want to delete this entry?</p>
+                </div>
+              </div>
+              <div class="row spacing bottom-margin">
+                <div class="column-flex">
+                  <button class="cancel-button">CANCEL</button>
+                </div>
+                <div class="column-flex">
+                  <button class="confirm-button">CONFIRM</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
