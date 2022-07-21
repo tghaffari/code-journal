@@ -87,6 +87,11 @@ textarea {
   text-decoration: none;
 }
 
+.edit-button {
+  color: #562b81;
+  font-size: 20px;
+}
+
 .spacing {
   justify-content: space-between;
   align-items: center;
@@ -105,7 +110,8 @@ textarea:focus {
 }
 
 .save-button:hover,
-.new-button:hover {
+.new-button:hover,
+.edit-button:hover {
   cursor: pointer;
 }
 
