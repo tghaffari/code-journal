@@ -16,7 +16,6 @@ function saveEntryData(event) {
   data.editing = null;
   var dataJSON = JSON.stringify(data);
   localStorage.setItem('data-local-storage', dataJSON);
-
 }
 
 window.addEventListener('beforeunload', saveEntryData);

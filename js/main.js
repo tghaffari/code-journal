@@ -1,4 +1,3 @@
-
 var $img = document.querySelector('#img');
 var $photoUrl = document.querySelector('#photo-url');
 var $newEntryForm = document.querySelector('#new-entry-form');
@@ -13,7 +12,7 @@ var $delete = document.querySelector('.delete');
 var $entryTitle = document.querySelector('.new-entry-styling');
 var $modalBackground = document.querySelector('.modal-background');
 var $cancelButton = document.querySelector('.cancel-button');
-// var $confirmButton = document.querySelector('.confirm-button');
+var $confirmButton = document.querySelector('.confirm-button');
 
 function updateImage(event) {
   if ($photoUrl.value === '') {
@@ -215,15 +214,36 @@ function handleEditButtonClick(event) {
 }
 
 function handleDeleteClick(event) {
-  if (event.target.matches('.delete')) {
-    $modalBackground.className = 'modal-background';
-  }
+  $modalBackground.className = 'modal-background';
 }
 
 function handleCancelButtonClick(event) {
-  if (event.target.matches('.cancel-button')) {
-    $modalBackground.className = 'modal-background hidden';
+  $modalBackground.className = 'modal-background hidden';
+}
+
+function handleConfirmButtonClick(event) {
+  var $li = document.querySelectorAll('li');
+
+  for (var x = 0; x < data.entries.length; x++) {
+    if (data.editing.entryId === data.entries[x].entryId) {
+      data.entries.splice(x, 1);
+      break;
+    }
   }
+
+  for (var i = 0; i < $li.length; i++) {
+    var liDataEntryId = $li[i].getAttribute('data-entry-id');
+    liDataEntryId = parseInt(liDataEntryId);
+    if (liDataEntryId === data.editing.entryId) {
+      $li[i].remove();
+    }
+  }
+  data.editing = null;
+  viewSwap('entries');
+  if (data.entries.length === 0) {
+    $entriesPlaceholder.className = 'entries-placeholder';
+  }
+  $modalBackground.className = 'modal-background hidden';
 }
 
 $newButton.addEventListener('click', handleNewButtonClick);
@@ -231,3 +251,4 @@ $navbarEntries.addEventListener('click', handleNavBarEntriesClick);
 $entriesList.addEventListener('click', handleEditButtonClick);
 $delete.addEventListener('click', handleDeleteClick);
 $cancelButton.addEventListener('click', handleCancelButtonClick);
+$confirmButton.addEventListener('click', handleConfirmButtonClick);
