@@ -16,17 +16,39 @@ function updateImage(event) {
 
 $photoUrl.addEventListener('input', updateImage);
 
-function saveNewEntry(event) {
+function saveEntry(event) {
   event.preventDefault();
+
+  var $li = document.querySelectorAll('li');
+
   var titleInput = $newEntryForm.elements.title.value;
   var photoUrlInput = $newEntryForm.elements.url.value;
   var notesInput = $newEntryForm.elements.notes.value;
-  var newEntryInput = { title: titleInput, photoUrl: photoUrlInput, notes: notesInput };
-  newEntryInput.entryId = data.nextEntryId;
-  data.nextEntryId++;
-  data.entries.unshift(newEntryInput);
-  var createdJournalEntry = renderJournalEntry(newEntryInput);
-  $entriesList.prepend(createdJournalEntry);
+  var journalEntryInput = { title: titleInput, photoUrl: photoUrlInput, notes: notesInput };
+
+  if (data.editing !== null) {
+    var entryId = data.editing.entryId;
+    journalEntryInput.entryId = entryId;
+    for (var i = 0; i < data.entries.length; i++) {
+      if (entryId === data.entries[i].entryId) {
+        data.entries[i] = journalEntryInput;
+      }
+    }
+    for (var a = 0; a < $li.length; a++) {
+      var dataEntryId = $li[a].getAttribute('data-entry-id');
+      dataEntryId = parseInt(dataEntryId);
+      if (dataEntryId === entryId) {
+        var createdJournalEntry = renderJournalEntry(journalEntryInput);
+        $li[a].replaceWith(createdJournalEntry);
+      }
+    }
+  } else {
+    journalEntryInput.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.unshift(journalEntryInput);
+    createdJournalEntry = renderJournalEntry(journalEntryInput);
+    $entriesList.prepend(createdJournalEntry);
+  }
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   if (data.entries.length > 0) {
     $entriesPlaceholder.className = 'row bottom-margin entries-placeholder hidden';
@@ -35,7 +57,7 @@ function saveNewEntry(event) {
   viewSwap('entries');
 }
 
-$newEntryForm.addEventListener('submit', saveNewEntry);
+$newEntryForm.addEventListener('submit', saveEntry);
 
 function renderJournalEntry(entry) {
 
@@ -148,6 +170,9 @@ function viewSwap(view) {
 
 function handleNewButtonClick(event) {
   viewSwap('entry-form');
+  data.editing = null;
+  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $newEntryForm.reset();
 }
 
 function handleNavBarEntriesClick(event) {
@@ -168,10 +193,13 @@ function handleEditButtonClick(event) {
       if (dataEntryId === data.entries[i].entryId) {
         data.editing = data.entries[i];
       }
+      if (data.editing !== null) {
+        $title.value = data.editing.title;
+        $photoUrl.value = data.editing.photoUrl;
+        $notes.value = data.editing.notes;
+        $img.setAttribute('src', data.editing.photoUrl);
+      }
     }
-    $title.value = data.editing.title;
-    $photoUrl.value = data.editing.photoUrl;
-    $notes.value = data.editing.notes;
   }
 }
 
