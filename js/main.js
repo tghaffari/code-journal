@@ -12,6 +12,8 @@ var $notes = document.querySelector('#notes');
 var $delete = document.querySelector('.delete');
 var $entryTitle = document.querySelector('.new-entry-styling');
 var $modalBackground = document.querySelector('.modal-background');
+var $cancelButton = document.querySelector('.cancel-button');
+// var $confirmButton = document.querySelector('.confirm-button');
 
 function updateImage(event) {
   if ($photoUrl.value === '') {
@@ -218,7 +220,14 @@ function handleDeleteClick(event) {
   }
 }
 
+function handleCancelButtonClick(event) {
+  if (event.target.matches('.cancel-button')) {
+    $modalBackground.className = 'modal-background hidden';
+  }
+}
+
 $newButton.addEventListener('click', handleNewButtonClick);
 $navbarEntries.addEventListener('click', handleNavBarEntriesClick);
 $entriesList.addEventListener('click', handleEditButtonClick);
 $delete.addEventListener('click', handleDeleteClick);
+$cancelButton.addEventListener('click', handleCancelButtonClick);
