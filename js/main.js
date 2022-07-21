@@ -11,7 +11,9 @@ var $title = document.querySelector('#title');
 var $notes = document.querySelector('#notes');
 
 function updateImage(event) {
-  $img.setAttribute('src', event.target.value);
+  if ($photoUrl.value === '') {
+    $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  } else $img.setAttribute('src', event.target.value);
 }
 
 $photoUrl.addEventListener('input', updateImage);
